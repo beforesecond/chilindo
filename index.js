@@ -23,7 +23,8 @@ async function retry(f, n = 3) {
 step("Open browser", () =>
   action(async state => {
     state.browser = await puppeteer.launch({
-    //  headless: false
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
   })
 );
@@ -87,14 +88,14 @@ step("login", () => {
     const config = JSON.parse(
       require("fs").readFileSync(".login.json", "utf8")
     );
-    await delay(1000)
+    await delay(1000);
     const email = config.email;
     const password = config.password;
     const url = config.pramool;
     await page.type('input[name="ctl00$Signin1$txtEmail"]', email);
     await page.type('input[name="ctl00$Signin1$txtPassword"]', password);
     await page.click("input#Signin1_btnSignIn");
-    await delay(1000)
+    await delay(1000);
     await retry(async () => {
       await page.goto(url);
     });
@@ -122,11 +123,11 @@ step("input price bid", () => {
   });
 });
 
-step('Close browser', () =>
+step("Close browser", () =>
   action(async state => {
     await delay(3000);
     /** @type {import('puppeteer').Browser} */
-    const browser = state.browser
-    browser.close()
+    const browser = state.browser;
+    browser.close();
   })
-)
+);
