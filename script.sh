@@ -1,1 +1,1 @@
-prescript index.js
+prescript ./index.js
