@@ -23,7 +23,7 @@ async function retry(f, n = 3) {
 step("Open browser", () =>
   action(async state => {
     state.browser = await puppeteer.launch({
-      headless: false
+    //  headless: false
     });
   })
 );
@@ -122,10 +122,11 @@ step("input price bid", () => {
   });
 });
 
-// step('Close browser', () =>
-//   action(async state => {
-//     /** @type {import('puppeteer').Browser} */
-//     const browser = state.browser
-//     browser.close()
-//   })
-// )
+step('Close browser', () =>
+  action(async state => {
+    await delay(3000);
+    /** @type {import('puppeteer').Browser} */
+    const browser = state.browser
+    browser.close()
+  })
+)
