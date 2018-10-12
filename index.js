@@ -35,7 +35,7 @@ step("Go to chilindo.com", () =>
     const browser = state.browser;
     const page = await browser.newPage();
     const config = JSON.parse(
-      require("fs").readFileSync(".login.json", "utf8")
+      require("fs").readFileSync("./.login.json", "utf8")
     );
     const url = config.pramool;
     await retry(async () => {
@@ -86,7 +86,7 @@ step("login", () => {
   action(async state => {
     const page = getPage(state);
     const config = JSON.parse(
-      require("fs").readFileSync(".login.json", "utf8")
+      require("fs").readFileSync("./.login.json", "utf8")
     );
     await delay(1000);
     const email = config.email;
@@ -106,7 +106,7 @@ step("input price bid", () => {
   action(async state => {
     const page = getPage(state);
     const config = JSON.parse(
-      require("fs").readFileSync(".login.json", "utf8")
+      require("fs").readFileSync("./.login.json", "utf8")
     );
     const maxBid = config.maxBid;
     const url = config.pramool;
